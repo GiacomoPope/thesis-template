@@ -6,7 +6,7 @@ This template is not a template, it's just my thesis. I keep wanting to make it 
 
 ## Thesis Typography
 
-I spent far too much of my time writing my thesis procrastinating by instead tweaking the typograhy. However, I'm really happy with how it turned out, so I thought I would put it online.
+I spent far too much of my time writing my thesis procrastinating by instead tweaking the typography. However, I'm really happy with how it turned out, so I thought I would put it online.
 
 I started writing my thesis following the [classicthesis](http://www.ctan.org/tex-archive/macros/latex/contrib/classicthesis/) LaTeX template, but it was too complicated and I wasted too much time fighting it to make changes. 
 
