@@ -1,0 +1,161 @@
+\chapter{Notation and Conventions}
+\label{app:conventions}
+
+\section{Notation}
+Throughout this thesis we use that $c = \hbar = 1$ except when these constants are reintroduced to illustrate a point. The gravitational coupling
+\begin{equation*}
+	\kappa_4^2 = 8 \pi G,
+\end{equation*}
+will be treated differently in various chapters to closely match the references of the discussion. As a rule of thumb, when considering relativistic problems, we take $G = 1$ such that $\kappa_4^2 = 8\pi$, and for discussions of supergravity we take that $\kappa_4^2 = 1$. 
+
+In all cases, we use the Einstein summation convention for repeated indices
+\begin{equation*}
+	X^\mu X_\mu  = \sum_{\mu} X^\mu X_\mu,
+\end{equation*} 
+and will use the bracket notation for symmetric and anti-symmetric parts of a tensor
+\begin{equation*}
+	X_{(\mu \nu)} = \half \left(X_{\mu \nu} + X_{\mu \nu} \right), \qquad 	X_{[\mu \nu]} = \half \left(X_{\mu \nu} - X_{\mu \nu} \right).
+\end{equation*}
+
+We define the Levi-Civita symbol\footnote{Another way of thinking about the Levi-Civita symbol is as the generalised Kronecker delta: $\delta^{1 \ldots n}_{\mu_1 \ldots \mu_n} = \es_{01...n}$} by:
+\begin{equation*}
+	\es_{01...n} = 1 ,
+\end{equation*}
+which is antisymmetric in its indices. The Levi-Civita symbol is \emph{not a tensor}. To enable us to raise and lower the indices with the metric, we enhance the symbol $\es$ to be the Levi-Civita tensor $\et$, by including the determinant of the spacetime metric:
+\begin{equation*}
+	\et_{\mu_1 \ldots \mu_n} = \sqrt{|g|} \es_{\mu_1 \ldots \mu_n}.
+\end{equation*}
+Now we can raise the indices to find that
+\begin{equation*}
+	\et^{\mu_1 \ldots \mu_n} = \et_{\nu_1 \ldots \nu_n} g^{\mu_1 \nu_1} \ldots g^{\mu_n \nu_n} = \sqrt{g} \es_{\nu_1 \ldots \nu_n} g^{\mu_1 \nu_1} \ldots g^{\mu_1 \nu_1} = \frac{(-)^t}{\sqrt{g}} \es^{\mu_1 \ldots \nu_n},
+\end{equation*}
+where $t$ counts the number of timelike dimensions. The Levi-Civita tensor can be contracted to obtain the identity
+\begin{equation*}
+	\et_{\mu_1 \ldots \mu_p \sigma_{p+1} \ldots \sigma_p} \et^{\nu_1 \ldots \nu_p \sigma_{p+1} \ldots \sigma_n} = (-)^t p! (n-p)! \delta_{\mu_1}^{\nu_i} \ldots \delta_{\mu_p}^{\nu_p}.
+\end{equation*}
+The Levi-Civita tensor appears in the description of the volume form. For an $n$-dimensional manifold, the volume form is
+\begin{equation*}
+\begin{aligned}
+	\text{vol}_n &= \sqrt{|g|} dx^{1} \wedge \ldots \wedge dx^{n} = \frac{1}{n!} \sqrt{|g|}  \es_{\mu_1 \ldots \mu_n} dx^{\mu_1} \wedge \ldots \wedge dx^{\mu_n}, \\
+	&= \frac{1}{n!} \et_{\mu_1 \ldots \mu_n} dx^{\mu_1} \wedge \ldots \wedge dx^{\mu_n}.
+\end{aligned}
+\end{equation*}
+
+We define a $p$-form by
+\begin{equation*}
+	X = \frac{1}{p!} X_{\mu_1 \ldots \mu_p} dx^{\mu_1} \wedge \ldots \wedge dx^{\mu_p}.
+\end{equation*}
+The wedge product of $p$-,$q$-forms is given generally by
+\begin{equation*}
+	(X \wedge Y)_{\mu_1 \ldots \mu_p \nu_1 \ldots \nu_q} = \frac{(p+q)!}{p! q!} X_{[\mu_1 \ldots \mu_p } Y_{\nu_1 \ldots \nu_q]},
+\end{equation*}
+and it is useful to remember
+\begin{equation}
+\label{eq:pqswap}
+	X \wedge Y = (-)^{pq} Y \wedge X.
+\end{equation}
+Taking the exterior derivative of a $p$-form $X$ gives a $(p+1)$-form:
+\begin{equation*}
+\begin{aligned}
+	&d : \Omega^p \to \Omega^{p -1} \\
+	&dX = \frac{1}{p!} \partial_\nu X_{\mu_1 \ldots \mu_p} dx^{\nu} \wedge dx^{\mu_1} \wedge \ldots \wedge dx^{\mu_p}.
+\end{aligned}
+\end{equation*}
+The Hodge-star is defined by:
+\begin{equation*}
+\begin{aligned}
+	&\star : \Omega^p \to \Omega^{n - p} \\
+	&X \wedge \star Y := (X, Y) \; \text{vol}_n,
+\end{aligned}
+\end{equation*}
+where the inner product in components is given by
+\begin{equation*}
+	(X, Y) = \frac{1}{p!} X_{\mu_1 \ldots \mu_p} Y^{\mu_1 \ldots \mu_p}. 
+\end{equation*}
+From this, we can write down the components of the Hodge dual as
+\begin{equation*}
+	\star X = \frac{1}{p! (n - p)!} X_{\mu_1 \ldots \mu_p} \tensor{\et}{^{\mu_1 \ldots \mu_p}_{\nu_{p+1} \ldots \nu_n}} dx^{\nu_{p+1}} \wedge \ldots \wedge dx^{\nu_n}.
+\end{equation*}
+The double application of the Hodge-star gives back a $p$-form with
+\begin{equation*}
+	\star \star X = (-1)^{p(n-p) + t} X,
+\end{equation*}
+where $n$ is the dimension of the manifold, and $t$ counts the number of timelike dimensions. Using the Hodge-star, we can write the volume form as 
+\begin{equation*}
+	\text{vol}_n = \star 1,
+\end{equation*}
+and we can use this to rewrite a Lagrangian into the language of forms. As an example the Einstein-Maxwell Lagrangian can be written as
+\begin{equation*}
+	\int_M \sqrt{-g} d^4 x \left(- \frac{1}{2 \kappa_4^2} R - \frac{1}{4 g^2} F_{\mu \nu} F^{\mu \nu} \right) \equiv \int_M  \left(- \frac{1}{2 \kappa_4^2} \star R - \frac{1}{2 g^2} F \wedge \star F \right).
+\end{equation*}
+
+
+\section{Sign conventions}
+
+In this thesis, we use a set of sign conventions that was established in the research \cite{Gutowski:2019iyo, Gutowski:2020fzb} which are the core of the discussions of this body of work. These conventions were picked to follow the work of \cite{Dempster:2015}, which was the starting point for the planar symmetric solutions of $\N = 2$ supergravity and allowed for the comparison and homogenisation of our papers with the preceding ones. We will show below a set of three signs which were highlighted as variable in \cite{Misner:1974qy} and use the parametrisation of conventional signs as in \cite{Freedman:2012zz}.
+
+Studying general relativity involves picking conventions for three distinct signs $s_i=\pm 1$, $i=1,2,3$. The first is the overall sign of the Minkowski metric
+\begin{equation*}
+	\eta_{a b} = s_1 \text{diag}(-+++),
+\end{equation*}
+and decides whether we work with a `mostly-plus' or `mostly-minus' signature. The second sign choice comes from the definition of the Riemann tensor:
+\begin{equation*}
+	\tensor{R}{^\mu_{\nu \rho \sigma}} = s_2(\partial_\rho \tensor{\Gamma}{^\mu_{\nu \sigma}} - \partial_\sigma \tensor{\Gamma}{^\mu_{\nu \rho}} +  \tensor{\Gamma}{^\tau_{\nu \sigma}} \tensor{\Gamma}{^\mu_{\tau \rho}} -  \tensor{\Gamma}{^\tau_{\nu \rho}} \tensor{\Gamma}{^\mu_{\tau \sigma}} )\;,
+\end{equation*} 
+and the third sign from the Einstein equations
+\begin{equation*}
+	s_3 \left( R_{\mu \nu} - \half g_{\mu \nu} R \right)=  \kappa_4^2 T_{\mu \nu}\;,
+\end{equation*}
+where it is understood that $T_{00}$ is always positive (for normal matter). The signs $s_2,s_3$ enter into the definitions of the Ricci tensor and Ricci scalar:
+\begin{equation*}
+	s_2 s_3 R_{\mu \nu} =  \tensor{R}{^\rho_{\mu \rho \nu}}, \qquad R = g^{\mu \nu} R_{\mu \nu}.
+\end{equation*}
+These three signs enter into a Lagrangian for gravity, vector and scalar fields as:
+\begin{equation*}
+	\La = \left(s_1 s_3 \frac{R}{2 \kappa_4^2} - s_1 \frac{1}{\kappa_4^2} \partial_\mu \phi \partial^\mu \phi  - \frac{1}{4 g^2} F_{\mu \nu} F^{\mu \nu} \right).
+\end{equation*}
+Generally, the conventions used in a particular paper can usually be reconstructed using that the kinetic terms are positive. This depends of cause on knowing that the overall sign of the Lagrangian has been fixed accordingly, and that we are not dealing with a non-standard theory with flipped kinetic terms.\footnote{As an example for non-standard sign conventions, in our conclusions we mention the interesting duality suggested by the matching of Euclidean partition functions for theories which differ in the overall sign for the sign of the gauge field kinetic terms. For more detail, see Section \ref{sec:furtherwork}.} We also need to assume that the energy-momentum tensor is defined such that $T_{00}$ is positive and therefore:
+\begin{equation*}
+	T_{\mu \nu} = -s_1 \frac{2}{\sqrt{-g}} \frac{ \delta(
+	\La_m \sqrt{-g})}{\delta g^{\mu \nu}},
+\end{equation*}
+where $\La_m$ is the matter contribution to the Lagrangian. 
+
+In this thesis, we use the same sign conventions as in 
+\cite{Gutowski:2019iyo, Gutowski:2020fzb} which in turn where taken over from \cite{Dempster:2015}. This is a parametrisation where the Einstein-Hilbert and
+scalar term enter with a minus sign:
+\begin{equation*}
+	\La = \left(-\frac{R}{2 \kappa_4^2} - \frac{1}{\kappa_4^2} \partial_\mu \phi \partial^\mu \phi  - \frac{1}{4 g^2} F_{\mu \nu} F^{\mu \nu} \right)\;.
+\end{equation*} 
+From this we can read off 
+\begin{equation*}
+	s_1 = 1, \qquad s_3 = -1.
+\end{equation*}
+Defining the Ricci tensor such that  $s_2 s_3=1$, consistency determines the overall sign of the Riemann tensor as 
+$s_2 = -1$, 
+\begin{equation*}
+	\tensor{R}{^\mu_{\nu \rho \sigma}} = -(\partial_\rho \tensor{\Gamma}{^\mu_{\nu \sigma}} - \partial_\sigma \tensor{\Gamma}{^\mu_{\nu \rho}} +  \tensor{\Gamma}{^\tau_{\nu \sigma}} \tensor{\Gamma}{^\mu_{\tau \rho}} -  \tensor{\Gamma}{^\tau_{\nu \rho}} \tensor{\Gamma}{^\mu_{\tau \sigma}} ).
+\end{equation*} 
+It follows that Einstein's equations are:
+\begin{equation*}
+	 R_{\mu \nu} - \half g_{\mu \nu} R =  -\kappa_4^2 T_{\mu \nu}.
+\end{equation*}
+
+With these conventions, a spacelike surface of positive curvature has sign$(R) = s_1 s_3 = -1$, and so we have the slightly strange understanding that a positively curved space has a negative Ricci scalar! From the perspective of the (anti) de Sitter solutions, we take the action to be of the form
+\begin{equation*}
+	S = - \frac{1}{16\pi} \int_{M} (R - 2\Lambda) \sqrt{-g} d^4 x
+\end{equation*}
+such that when solving the equations of motion, the Ricci scalar is proportional to the cosmological constant. This means that for the de Sitter solution we have $\Lambda < 0$ and for the anti-de Sitter solution, we have that $\Lambda > 0$. This is against most conventional research in the area, and descends from the action built from $s_3 = -1$.
+
+Following these conventions through to the Euclidean action, we find that these signs appear as:
+\begin{equation}
+\label{eq:totact}	
+\begin{aligned}
+		S = \frac{s_1 s_3}{2\kappa_4^2} \int_M \sqrt{g} (R - 2\Lambda) d^4 x + \frac{s_1 s'_4 \epsilon}{\kappa_4^2} \int_{\partial M} \sqrt{|\gamma|} K d^3x ,
+\end{aligned}
+\end{equation}
+where the fourth sign $s'_4$, which arises from the definition of the second fundamental form, is discussed in Section \ref{sec:extrinsic}. Note that $s'_4$ is distinct from $s_4$ in \cite{Freedman:2012zz}, which is related to the spin connection. Since we only consider bosonic fields within this thesis, this sign is irrelevant for us. 
+
+
+
+

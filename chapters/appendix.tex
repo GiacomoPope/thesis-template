@@ -1,0 +1,661 @@
+\chapter{Thermodynamic Potentials}
+\label{app:thermo}
+
+In our calculations of the first law of thermodynamics, we use the Euclidean action formalism to derive a gravitational partition function. This is related to thermodynamic partition functions and from these, we obtain thermodynamic potentials. In this appendix, we give some extra space to the thermodynamic potentials we consider and the various parameters we can obtain through computing partial derivatives. We end by re-focusing for the case of our black hole solutions and the quantities we are interested in. The majority of this discussion follows the textbook by Sethna \cite{Sethna:2006}.
+
+\section{Equation of state}
+
+The entropy $S(E,V,N)$ can be considered as the first of our \emph{thermodynamic potentials} which depends on the energy $E$, the volume $V$ and the particle number $N$. In a similar way, we can rewrite this into the form $E(S,V,N)$ and consider the energy as a thermodynamic potential.
+
+From the statistical mechanics perspective, the temperature is defined from the entropy through the relation
+\begin{equation*}
+	T := \pardev{S}{E} \bigg|_{V,N}.
+\end{equation*}
+We can relate this to the other partial derivatives using the identity
+\begin{equation*}
+	\pardev{S}{E} \bigg|_{V,N} \pardev{E}{V} \bigg|_{S,N} \pardev{V}{S} \bigg|_{E,N} = -1,
+\end{equation*}
+which allows us to find the other values of the partial derivatives
+\begin{equation*}
+	\frac{P}{T} = \pardev{S}{V} \bigg|_{E,N}, \quad -\frac{\mu}{T} = \pardev{S}{N} \bigg|_{E,V} \;\; \Rightarrow \;\;  \pardev{E}{V} \bigg|_{S,N} = -P, \quad \pardev{E}{N} \bigg|_{S,V} = \mu,
+\end{equation*}
+where $P$ is the pressure and $\mu$ is the chemical potential. These relations can be understood and are expected from the first law of thermodynamics
+\begin{equation*}
+	dE = TdS - PdV + \mu dN.
+\end{equation*}
+In the main body of the thesis, we verify the first law of thermodynamics by computing the energy and writing it in terms of the entropy and electric charge (which takes the place of particle number $N$ for relativistic systems). It is common to refer to the expression $S(E,V,N)$ or $E(S,V,N)$ as the equation of state. Varying this, we can check the above relations and verify that the first law holds. However, for the solutions we consider, we don't have access to the energy itself and we must first derive it from other thermodynamic potentials.
+
+\paragraph{Contact geometry} We mention in passing that it can be shown that the first law of thermodynamics is equivalent to the existence of a contact geometry which can be thought of as the odd-dimensional analogue for symplectic geometry. As tempted as we are to continue on this interesting note, digressing within a digression in our appendix seems extravagant. Our intuition is that this geometric picture of the first law (of both thermodynamics and black hole mechanics) might be an interesting way to try and classify how the non-standard work of the triple Wick-rotation was able to have a well defined first law, despite the lack of a quantum mechanical link between partition functions. For references on contact geometry, we offer \cite{arnoldcontact, Bravetti:2018rts}.
+
+\section{The canonical ensemble}
+
+To obtain the internal energy of the solution, we work with the canonical ensemble and derive the Helmholtz free energy. The canonical ensemble governs the equilibrium behaviour for a system at fixed temperature, and we can write the probability that a state $s$ has energy $E_s$ using the Boltzmann distribution
+\begin{equation*}
+	\rho(s) \propto \exp \left( - \frac{E_s}{k_B T} \right),
+\end{equation*}
+where $k_B$ is the Boltzmann constant. The partition function appears as the normalisation factor for the probability
+\begin{equation*}
+	\rho(s) = \frac{1}{Z} \exp \left( - \frac{E_s}{k_B T} \right),
+\end{equation*} 
+with its explicit form as
+\begin{equation*}
+	Z(T, N, V) = \sum_n \exp \left( - \frac{E_n}{k_B T} \right).
+\end{equation*}
+This probability distribution is the definition of the canonical ensemble, describing systems exchanging energy with the external world at temperature $T$. The partition function $Z$ does more than just act as a normalisation, but instead can be used to describe the statistical properties of the system. For example, computing the average \emph{internal energy} we find that  
+\begin{equation}
+\label{eq:canonicalinternal}
+	\langle E \rangle  = \sum_n E_n P_n = \frac{1}{Z} \sum_n E_n \exp \left( - \beta E_n \right) = - \pardev{\log Z}{\beta},
+\end{equation}
+where we are using that the inverse temperature is $\beta^{-1} = k_B T$. This internal energy will be the parameter we derive and vary to verify the first law.
+
+Similarly, one can compute the entropy of the solution and find it  as a function of thermodynamic variables and the (logarithm of the) partition function
+\begin{equation*}
+	S = -k_B \sum_n P_n \log P_n = \frac{\langle E \rangle}{T} + k_B \log Z.
+\end{equation*}
+From the logarithm of the partition function, we can write down a new thermodynamic potential, hinted by its presence in the above relationships:
+\begin{equation*}
+	F(T,N,V) = - k_B T \log Z = \langle E \rangle - TS, 
+\end{equation*}
+which is known as the \emph{Helmholtz free energy}. Its total derivative is related to other thermodynamic parameters by
+\begin{equation*}
+	dF = - S dT - P dV + \mu dN,
+\end{equation*}
+from which we can read off the various values of the partial derivatives
+\begin{equation*}
+	\pardev{F}{T} \bigg|_{N, V} = - S, \qquad \pardev{F}{V} \bigg|_{N, T} = - P, \qquad \pardev{F}{N} \bigg|_{V, T} = \mu.
+\end{equation*}
+The internal energy can be computed given the free energy and the (inverse) temperature through rewriting \eq{canonicalinternal}
+\begin{equation*}
+	\langle E \rangle = \pardev{(\beta F)}{\beta}.
+\end{equation*}
+
+\section{Grand canonical ensemble}
+
+The grand canonical ensemble describes a system which exchanges both energy and particle number. We find that due to the boundary conditions placed on the Euclidean action within the body of the thesis, this is the natural thermodynamic partition function we consider. 
+
+When both energy and particle number are allowed to be exchanged, the probability for a state to have energy $E_s$ and particle number $N_s$ is
+\begin{equation*}
+		\rho(s) = \frac{1}{\mathcal{Z}} \exp \left( - \frac{E_s - \mu N_s}{k_B T} \right),
+\end{equation*}
+where the normalisation $\mathcal{Z}$ is the \emph{grand partition function}:
+\begin{equation*}
+	\mathcal{Z}(T, \mu, V) = \sum_n \exp \left( - \frac{E_n - \mu N_n}{k_B T} \right).
+\end{equation*}
+Within this context, we can consider $\mu$ to be the energy required to add a particle to the system adiabatically\footnote{An adiabatic process occurs between a system and its surroundings without changing the mass or temperature.} while keeping the $(N + 1)$-particle system in equilibrium. 
+
+Just as with the canonical ensemble, one can write down a thermodynamic potential from the logarithm to obtain the \emph{grand potential} given by
+\begin{equation*}
+	\Omega(T, \mu, V) = - k_B T \log \mathcal{Z} = \langle E \rangle - TS - \mu N.
+\end{equation*}
+This can be related to the Helmholtz free energy by a Legendre transformation
+\begin{equation*}
+	\Omega = F - \mu N,
+\end{equation*}
+and the total derivative of the grand potential is given by
+\begin{equation*}
+	d\Omega = - S dT - P dV - N d\mu,
+\end{equation*}
+allowing us to read off the form of the various partial derivatives
+\begin{equation*}
+	\pardev{\Omega}{T} \bigg|_{\mu, V} = - S, \qquad \pardev{\Omega}{V} \bigg|_{\mu, T} = - P, \qquad \pardev{F}{\mu} \bigg|_{V, T} = -N.
+\end{equation*}
+
+\section{Back to black holes}
+
+In the body of the thesis, we are concerned with the thermodynamics of charged black hole solutions. In relativistic thermodynamics, the particle number $N$ is not conserved and therefore it is replaced by conserved charges. 
+
+Let us consider the case of a single conserved charge $\mathcal{Q}$. The natural boundary conditions of the Euclidean action fix the electric charge and allow the chemical potential to vary, and as such, the natural thermodynamic partition function we relate to our gravitational calculation is the grand canonical partition function. To obtain the internal energy, we are interested in working with the Helmholtz free energy. One option is to place additional boundary data with a charge projection operator \cite{Hawking:1995ap} such that the gravitational partition function is related to the canonical partition function. This is the option taken in \cite{Gibbons:1976ue, Hawking:1995ap}. We take the alternative method of leaving the boundary data as it is, and instead compute the grand canonical potential from the partition function followed by making a Legendre transformation to obtain the free energy. From the free energy, the internal energy can be computed and thus the equation of state.
+
+We take the volume to be fixed so that the internal energy only depends on entropy and charge, $E=E(S,\mathcal{Q})$. The free energy $F(T,\mathcal{Q}) = E-TS$ and the grand potential $\Omega(T,\mu) =E-TS - \mu \mathcal{Q}$ are related to $E(S,\mathcal{Q})$ by Legendre transformations which exchange the extensive variables $S,\mathcal{Q}$ with the intensive variables temperature $T=\beta^{-1}$ and chemical potential $\mu$, where we have returned to our conventions where $k_B = 1$.
+
+Various partial derivatives can be read off from the total differentials
+\begin{equation}
+dE = TdS + \mu d\mathcal{Q}\;, \quad
+dF = - S dT + \mu d \mathcal{Q} \;,\quad
+d\Omega = - S dT - \mathcal{Q} d\mu .
+\end{equation}
+In particular, we obtain the following relations used in the main text:
+\begin{equation*}
+\mathcal{Q} = - \frac{\partial \Omega}{\partial \mu}, \quad
+\mu = \frac{\partial F}{\partial \mathcal{Q}} , \quad
+\beta = \frac{1}{T} = \frac{\partial S}{\partial E} , \quad
+S = - \frac{\partial F}{\partial T} = \beta^2 \frac{\partial F}{\partial \beta},
+\end{equation*}
+and
+\[
+\frac{\partial (\beta F)}{\partial \beta} = F + TS = E.
+\]
+These equations are sufficient for the computations and discussions we present in this work. For more information on statistical mechanics, we refer to \cite{Sethna:2006} and we found \cite{Hawking:1995ap} a particularly thorough and well written resource for a black hole perspective of thermodynamic partition functions. 
+
+\chapter{Hodge Duality}
+\label{app:Hodgeduality}
+
+In this appendix we continue the discussion put forward in Section \ref{sec:electromagneticduality} and consider the Hodge dualisation and rewriting of Lagrangians with arbitrary $p$-forms and spacetime dimension. We begin with the case for constant coupling, and then follow this considering spacetime-dependent couplings. We end our discussion with the generation of topological terms when considering the Hodge dualisation for gauge fields after dimensional reduction. For more details on dimensional reduction, we point back towards Section \ref{sec:dimreduction}. During this discussion, we will assume a spacetime manifold $M$ of dimension $d$, with $t$ timelike directions and Lagrangians built with the kinetic term for $p$-form gauge fields. Much of this discussion follows ideas from \cite{Atiyah:lecturenotes, Gibbons:lecturenotes}. 
+ 
+Electromagnetic duality is an example of Poincar\'e duality, which formalises the isomorphism $H^p(M) \rightarrow H_{d-p}(M)$\footnote{That is, the $p^{\text{th}}$ cohomology group is isomorphic to the $(d-p)^{\text{th}}$ homology group.} on a closed, oriented manifold $M$ of dimension $d$. Hodge theory allows this duality to be reformulated as an isomorphism between harmonic forms through the use of the Hodge-star. 
+
+The Hodge-star is a map from $\Omega^p \rightarrow \Omega^{d-p}$ and is defined such that for the $p$-forms $\alpha, \; \beta \in \Omega^p$, we can express the inner product as
+\begin{equation*}
+	(\alpha, \beta) = \int_M \alpha \wedge \star \beta.
+\end{equation*}
+A harmonic form is a form $\omega \in \Omega^p$ such that both $\omega$ and $\star \omega$ are closed:
+\begin{equation*}
+	d\omega = 0, \qquad d \star \omega = 0.
+\end{equation*} 
+The Hodge theorem proves that for harmonic forms, the Hodge-star is an isomorphism. We mention these more mathematical details for context, but relegate further details to \cite{Nakahara:206619, Hodge:book}. A particularly good reference for physicists needing basics in this area is given in the appendix of \cite{Becker:2007zj}, and in volume two of superstring theory \cite{Green:1987mn}. 
+
+Maxwell's equations define a harmonic form $F$ by
+\begin{equation*}
+	dF = 0, \qquad d \star F = 0,
+\end{equation*} 
+where $F = dA$ is a two-form. Hodge's theorem yields an isomorphism between $F \rightarrow \tilde{F} = \star F$. $\tilde{F}$ is a new two-form which also satisfies the equations of motion, with the role of the electric and magnetic components switched.  We note that this mapping is a symmetry at the level of the field equations, but not at the level of the Lagrangian. We can understand this as the Lagrangian is a functional of the gauge potential $A$ and not the gauge field. As we saw in the main text, to properly dualise the Lagrangian, the gauge field must be promoted to the level of a dynamic field by promoting the Bianchi identity to a field equation using a Lagrange multiplier. For a $p$-form in an $d$-dimensional space, we see that if the Hodge-dual is directly substituted into the Lagrangian, a factor of $(-)^t$ is picked up, where $t$ counts the number of minus signs in the metric signature:
+\begin{equation*}
+	\begin{aligned}
+		\int_M F_p \wedge \star F_p &\mapsto \int_M \tilde{F}_p \wedge \star \tilde{F}_p, \\
+		&= \int_M \star F_p \wedge \star \star F_p, \\
+		&= (-)^{p(d-p) + t} \int_M \star F_p \wedge F_p,\\
+		&= (-)^{2p(d-p) + t} \int_M F_p \wedge \star F_p, \\
+		&= (-)^t \int_M F_p \wedge \star F_p,
+	\end{aligned}
+\end{equation*}
+where we have used that for a $p$-form
+\begin{equation}
+\label{eq:Hodge2}
+	\star \star \omega_p = (-)^{p(d-p) + t} \omega.
+\end{equation}
+We see that for Lorentzian theories, where $t = 1$, replacing the $p$-field strength with its Hodge-dual introduces a sign error.
+
+
+\section{Hodge duality for p-form potentials}
+
+The correct procedure of dualisation is performed as follows. We are able to write the second order action:
+\begin{equation*}
+S[A] = -\half \int F_{p} \wedge \star  F_p, \qquad \qquad F_{p} = dA_{(p-1)},
+\end{equation*}
+as a first order action after promoting $F_{p}$ to be a fundamental field. We do this by including a new term into the action:
+\begin{equation}
+\label{eq:firstorderapp1}
+S[F] = \int -\half  F_{p} \wedge \star F_{p} + (-1)^{p+1} d F_p \wedge \star \lambda_{(p+1)}.
+\end{equation}
+This allows the Bianchi identity to become an equation of motion obtained by varying the Lagrange multiplier: a $(d-p-1)$-form. Let us see this explicitly:
+\begin{equation*}
+\begin{aligned}
+S[ \star \lambda + \delta \star \lambda; F] &= S[ \star \lambda; F] + \int (-1)^{p+1} dF_{p} \wedge \star \delta \lambda_{(p+1)}, \\
+0 &= \int (-1)^{p+1} dF_{p} \wedge \star \delta \lambda_{(p+1)}, \\
+\Rightarrow dF_{p} &= 0.
+\end{aligned}
+\end{equation*}
+By varying the action with respect to the field strength we find that the equation of motion is modified into the form
+\begin{equation*}
+\begin{aligned}
+		S[ \star \lambda; F + \delta F] &= S[\star \lambda, F] + \int - \delta F_p \wedge \star  F_p + (-1)^{p+1} d(\delta F_p)\wedge \star \lambda_{(p+1)},\\
+		&= S[\star \lambda, F] + \int - \delta F_p \wedge \star  F_p + (-1)^{2 p+2} (\delta F_p)\wedge d \star \lambda_{(p+1)},\\
+		&= S[\star \lambda, F] + \int \delta F_p  \wedge \left[ - \star  F_p + d \star \lambda_{(p+1)} \right], \\
+		&\Rightarrow \star F_p = d(\star \lambda_{(p+1)}),
+\end{aligned}
+\end{equation*}
+where in the second line, integrating by parts introduces the usual `$-$' together with a factor of $(-)^{p}$ commuting the exterior derivative $d$ past the $p$-form $F_p$.
+
+Collecting these together, we write down the equations of motion for the first order action as:
+\begin{equation*}
+\begin{aligned}
+	dF_{p} &= 0 ,\\
+	\star F_{p} &= d(\star \lambda_{(p+1)}).
+\end{aligned}
+\end{equation*}
+Now to dualise the action such that we express our action in terms of $(d-p)$-forms, we make the identification:
+\begin{equation}
+\label{eq:newhodgeduals}
+	\begin{aligned}
+		&\tilde{F}_{(d-p)} = \star F_{p}, \\
+		&\tilde{A}_{(d-p-1)} = \star \lambda_{(p+1)}, \qquad \tilde{F} = d\tilde{A}  ,
+	\end{aligned}
+\end{equation}
+and notice that the equations of motion are invariant. If we substitute \eq{newhodgeduals} into the first order action \eq{firstorderapp1}, we find that our new action is of the form:
+\begin{equation*}
+S[\tilde{A}] = -\half \int \tilde{F}_{(d-p)} \wedge \star \tilde{F}_{(d-p)}, \quad \qquad \tilde{F}_{(d-p)} = d\tilde{A}_{(d-p-1)},
+\end{equation*}
+which we see now has the correct sign for a kinetic term. 
+
+
+\section{Form fields coupled to dilaton fields}
+
+Let us now generalise this discussion to include a spacetime dependent coupling for the gauge field. In this discussion, we use a dilaton coupling which is what appears for gauge field kinetic terms descending from a string theory perspective. Our calculations would is unchanged by using some generic coupling $g(x)^{-2}$, or a coupling matrix $\I_{IJ}(X^I)$ as appears in the $\N = 2$ supergravity action coupled to vector multiplets \eqref{eq:4dlag}.   
+
+The action with a dilaton coupling is given by:\footnote{Here we have suppressed the term in the action for the kinetic term of the scalar field as it is not relevant to the current discussion.}
+\begin{equation*}
+S[A, \phi] = -\half \int e^{- \alpha \phi}  F_p \wedge \star F_p ,\qquad \qquad F_p = dA_{(p-1)},
+\end{equation*}
+where $\alpha$ is a constant. Again, we want to promote this action into first order form with the addition of a Lagrange multiplier:
+\begin{equation}
+\label{eq:firstorderapp2}
+S[F, \star \lambda, \phi] = \int -\half e^{- \alpha \phi} F_p \wedge \star F_p + (-1)^{p+1} d F_p \wedge \star \lambda_{(p+1)}.
+\end{equation}
+The equation of motion for the Lagrange multiplier will be no different from the previous section, however, the equation of motion for the field strength $F_p$ is given as:
+\begin{equation*}
+\begin{aligned}
+		S[F + \delta F, \star \lambda, \phi] &= S[F, \star \lambda, \phi] + \int - e^{-\alpha \phi} \delta F_p \wedge \star F_p + (-1)^{p+1} d(\delta F_p)\wedge \star \lambda_{(p+1)},\\
+		&= S[\star \lambda, F] + \int - e^{-\alpha \phi}  \delta F_p \wedge \star F_p + (-1)^{2p + 2} (\delta F_p)\wedge d(\star \lambda_{(p+1)}),\\
+		&= S[\star \lambda, F] + \int \delta F_p \wedge \left[- e^{-\alpha \phi} \star F_p  + d\left(\star \lambda_{(p+1)} \right) \right],\\
+		&\Rightarrow e^{-\alpha \phi} \star F_p = d(\star \lambda_{(p+1)}).
+\end{aligned}
+\end{equation*}
+Now in order to make the dualisation we must identify:
+\begin{equation*}
+	\begin{aligned}
+		&\tilde{F}_{(D-p)} = e^{-\alpha \phi} \star F_p, \\
+		&\tilde{A}_{(D-p-1)} = (\star \lambda_{(p+1)}), \qquad \tilde{F} = d\tilde{A}.
+	\end{aligned}
+\end{equation*}
+We can then substitute these relations into the first action \eq{firstorderapp2} to obtain a dualised Lagrangian
+\begin{equation*}
+S[\tilde{B}, \phi] = -\half \int e^{\alpha \phi}  \tilde{F}_{(D-p)} \wedge \star \tilde{F}_{(D-p)} ,\qquad \qquad \tilde{F}_{(D-p)} = d\tilde{A}_{(D-p-1)},
+\end{equation*}
+with the equations of motion left invariant. We see from this that the action gives the same equations of motion when we make the dualisation:
+\begin{equation*}
+	F \rightarrow \tilde{F} = e^{-\alpha \phi} \star 
+	F, \qquad \phi \rightarrow \tilde{\phi} = -\phi.
+\end{equation*}
+We notice that the gauge field coupling has been inverted.
+
+\section{Topological terms and transgression terms}
+
+We conclude this appendix with a discussion of the generation of topological terms from the Hodge dualisation of form fields after performing a Kaluza-Klein reduction. The Kaluza-Klein reduction of topological terms produces the so-called \emph{transgression terms} which modify the structure of the form fields in the lower-dimensional theory. Generally, for a full understanding of the lower dimensional field content for consecutive reductions, it is vital for all these terms to be included. In the body of the thesis, a note is made about the appearance of these terms and it is explained for our calculations, the field restrictions we make mean that the transgressions terms are set to zero. Here, we expand on these comments and give general formula for the appearance of topological terms, followed by the example for the case of reducing from six to five dimensions, showing that the dualisation of the three-form in five dimensions introduces the Chern-Simons form into our theory.
+
+We begin with the action for a $(d+1)$-dimensional theory for a $p$-form potential:
+\begin{equation*}
+	S[B] = - \half \int {H}_{(p+1)} \wedge  \star {H}_{(p+1)} ,\qquad {H} = d{B},
+\end{equation*}
+and reduce this over an $S^1$ using the Kaluza-Klein procedure to obtain a $d-$dimensional theory. In Section \ref{sec:dimred} we cover this, and using the formula \eq{dimgauge} we can write the reduced action is of the form:
+\begin{equation}
+\label{eq:redactswap}
+\begin{aligned}
+		S[\mathbb{B},\mathbb{A},A] = - \half \int &e^{2(d - p-1)\alpha \phi}  d \mathbb{A}_{(p-1)} \wedge \star d \mathbb{A}_{(p-1)} \\ - \ &e^{-2p\alpha \phi}  (d \mathbb{B}_{(p)} - d \mathbb{A}_{(p-1)} \wedge A_{(1)})\wedge \star (d \mathbb{B}_{(p)} - d \mathbb{A}_{(p-1)} \wedge A_{(1)}),
+\end{aligned}
+\end{equation}
+where $\phi$ and $A_{(1)}$ are the Kaluza-Klein scalar and vector respectively and our ($d+1$)-dimensional $p$-form potential $B_{p}$ has been reduced into the $p$-form, $\mathbb{B}_{p}$ and the $(p-1)$-form, $ \mathbb{A}_{(p-1)}$.
+
+Upon reduction, it is standard that if $p \geq d/2$, then we should use the Hodge dualisation procedure to rewrite the $p$-form potential as a $(d-p-2)$-form potential:
+\begin{equation*}
+	\mathbb{B}_{(p)} \rightarrow \tilde{\mathbb{B}}_{(d-p-2)} .
+\end{equation*}
+Just as before, we do this by promoting $\mathbb{H} = d\mathbb{B}$ into the fundamental field by using a Lagrange multiplier to enforce the Bianchi identity as field equations. To reduce the noise of this calculation, we will only write down the second line of \eq{redactswap} together with the new Lagrange multiplier term:
+\begin{equation*}
+\begin{aligned}
+		\tilde{S}[\mathbb{H},\mathbb{A},A] = - \half \int &e^{-2p\alpha \phi}  (\mathbb{H}_{(p+1)} - d \mathbb{A}_{(p-1)} \wedge A_{(1)})\wedge \star (\mathbb{H}_{(p+1)} - d \mathbb{A}_{(p-1)} \wedge A_{(1)}) \\
+		&+ \int (-)^p d\mathbb{H}_{(p+1)} \wedge \star \lambda_{(p+2)}.
+\end{aligned}
+\end{equation*}
+Integrating by parts we can write this as:
+\begin{equation*}
+\begin{aligned}
+		\tilde{S}[\mathbb{H},\mathbb{A},A] = - \half \int &e^{-2p\alpha \phi}  (\mathbb{H}_{(p+1)} - d \mathbb{A}_{(p-1)} \wedge A_{(1)}) \wedge \star(\mathbb{H}_{(p+1)} - d \mathbb{A}_{(p-1)} \wedge A_{(1)}) \\
+		&+ \int \mathbb{H}_{(p+1)} \wedge d \star \lambda_{(p+2)}.
+\end{aligned}
+\end{equation*}
+Varying with respect to $\mathbb{H}_{(p+1)}$ we obtain the algebraic relation:
+\begin{equation*}
+\begin{aligned}
+		\star (\mathbb{H}_{(p+1)} - d \mathbb{A}_{(p-1)} \wedge A_{(1)}) &=  e^{2p\alpha \phi} d \star \lambda_{(p+2)}, \\
+		(\mathbb{H}_{(p+1)} - d \mathbb{A}_{(p-1)} \wedge A_{(1)}) &=  (-)^{p(d + p) + d} e^{-2p\alpha \phi} \star d \star \lambda_{(p+2)} ,\\
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+	\mathbb{H}_{(p+1)} = (-)^{p(d + p)+d} e^{2p\alpha \phi} \star d \star \lambda_{(p+2)}+ d \mathbb{A}_{(p-1)} \wedge A_{(1)}.
+\end{equation*}
+Substituting this back into the original action, whilst making the identification for our new dual fields:
+\begin{equation*}
+	\begin{aligned}
+		\tilde{\mathbb{H}}_{(d-p-1)} = e^{-2 p \alpha \phi} \star \mathbb{H}_{(p+1)}, \qquad \tilde{\mathbb{B}}_{(d-p-2)} = \star \lambda_{(p+2)},
+	\end{aligned}
+\end{equation*}
+we obtain:
+\begin{equation*}
+\begin{aligned}
+	\tilde{S}[\mathbb{H},\mathbb{A},A] = (-)^{p(d+p)+d} \int \half &e^{2p\alpha \phi} \tilde{\mathbb{H}}_{(d-p-1)} \wedge \star \tilde{\mathbb{H}}_{(d-p-1)} +  \tilde{\mathbb{H}}_{(d-p-1)} \wedge \mathbb{F}_{(p)} \wedge A_{(1)} \\ & \ \ \tilde{\mathbb{H}}_{(d-p-1)} = d\tilde{\mathbb{B}}_{(d-p-2)} \qquad \mathbb{F}_{(p)}  = d\mathbb{A}_{(p-1)}.
+\end{aligned}
+\end{equation*}
+Including in the piece we dropped off earlier, the full, dimensionally reduced action would look like:
+\begin{equation}
+\begin{aligned}
+S[\mathbb{B},\mathbb{A},A] = (-)^{p(d+p)+d} &\int \half e^{2p\alpha \phi} \tilde{\mathbb{H}}_{(d-p-1)} \wedge \star \tilde{\mathbb{H}}_{(d-p-1)} - \half e^{2(d-p-1)\alpha \phi}  \mathbb{F}_{(p)} \wedge \star \mathbb{F}_{(p)} \\
+	  + &\int \tilde{\mathbb{H}}_{(d-p-1)} \wedge \mathbb{F}_{(p)} \wedge A_{(1)} ,
+\end{aligned}
+\end{equation}
+where we understand the last contribution as a topological term and
+\begin{equation*}
+	\tilde{\mathbb{H}}_{(d-p-1)} = d\tilde{\mathbb{B}}_{(d-p-2)}, \qquad \mathbb{F}_{(p)}  = d\mathbb{A}_{(p-1)}  .
+\end{equation*}
+
+As an example, let us consider the case where $p=2$, $d=5$ and therefore $\alpha^{-1} = \sqrt{24}$ (see Section \ref{sec:dimred}). We can write the dimensionally reduced, Hodge dualised kinetic term for the original three-form as
+\begin{equation}
+\begin{aligned}
+	S[\mathbb{B}, \mathbb{A}, A] = - \half \int_{\mathcal{M}_6}  \mathbb{H}_{(3)} \wedge \star \mathbb{H}_{(3)} \rightarrow \ & - \half \int_{\mathcal{M}_5} e^{2\phi/ \sqrt{6}}  \tilde{\mathbb{H}}_{(2)} \wedge \star \tilde{\mathbb{H}}_{(2)} + \int_{\mathcal{M}_5} \tilde{\mathbb{H}}_{(2)} \wedge \mathbb{F}_{(2)} \wedge A_{(1)} \\
+	& - \half \int_{\mathcal{M}_5} e^{2\phi/ \sqrt{6}}  \mathbb{F}_{(2)} \wedge \star \mathbb{F}_{(2)}.
+	\end{aligned}
+\end{equation}
+Lastly, if we were to couple this to a Dilaton field such that the original $(d+1)$-dimensional action was written as:
+\begin{equation*}
+	S = -\half \int_{\mathcal{M}_{d+1}} e^{\beta \lambda} H_{(p+1)} \wedge \star H_{(p+1)},
+\end{equation*}
+we would find upon reduction that the sign in front of $\lambda$ would swap for the term dualised, like so:
+\begin{equation}
+\begin{aligned}
+	S[\mathbb{B}, \mathbb{A}, A]= (-)^{p(d+p)+d} &\int \half e^{2p\alpha \phi - \beta \lambda}  \tilde{\mathbb{H}}_{(d-p-1)} \wedge \star \tilde{\mathbb{H}}_{(d-p-1)} - \half e^{2(d-p-1)\alpha \phi + \beta \lambda}  \mathbb{F}_{(p)} \wedge \star \mathbb{F}_{(p)} \\
+	  &+ \tilde{\mathbb{H}}_{(d-p-1)} \wedge \mathbb{F}_{(p)} \wedge A_{(1)} ,
+\end{aligned}
+\end{equation}
+and so, in our case, where $\beta = -\sqrt{2}, \; d=5, \; p=2$ we find that:
+\begin{equation}
+\begin{aligned}
+	S[\mathbb{B}, \mathbb{A}, A]= - &\int \half e^{2\phi / \sqrt{6} + \sqrt{2} \lambda} \star \tilde{\mathbb{H}}_{(2)} \wedge \tilde{\mathbb{H}}_{(2)} - \half e^{2\phi / \sqrt{6} - \sqrt{2} \lambda} \star \mathbb{F}_{(2)} \wedge \mathbb{F}_{(2)} \\
+	  - &\int \tilde{\mathbb{H}}_{(2)} \wedge \mathbb{F}_{(2)} \wedge A_{(1)}.
+\end{aligned}
+\end{equation}
+
+
+
+
+
+\chapter{C-map Calculation Details}
+\label{app:cmapfurther}
+
+In this appendix, we detail some additional steps for the calculations performed in Section \ref{sec:cmap}. There are no surprising results, but when learning this, it took some time to compute them all, and so we include this as a resource for future students. 
+
+\section{Dualising vector fields}
+
+The Lagrangian after reduction is given by
+\begin{equation}
+\begin{aligned}
+ \La_3 &= \frac{1}{2}\left(-R_3 - \frac{1}{2}\partial_\mu \phi \partial^\mu \phi + \frac{1}{4}\epsilon e^{2\phi}V^{\mu\nu} V_{\mu\nu} \right) - g_{I\bar{J}} \partial_\mu X^I \partial^\mu \bar{X}^{\bar{J}} \\
+ &+ \frac{1}{4}e^\phi \I_{IJ}(F^I_{\mu\nu} + \zeta^IV_{\mu\nu})(F^{J|\mu\nu} + \zeta^JV^{\mu\nu}) \\
+ &- \frac{1}{2}\epsilon e^{-\phi} \I_{IJ} \partial_\mu\zeta^I \partial^\mu \zeta^J - \frac{1}{2} \epsilon \cR_{IJ}(F^I_{\mu\nu} + \zeta^IV_{\mu\nu})\partial_\rho\zeta^J \es^{\mu\nu\rho}.
+\end{aligned}
+\end{equation}
+To dualise this, we include the Lagrange multiplier: 
+\begin{equation}
+\La_{\text{Lm}} = \frac{1}{2} \epsilon \varepsilon^{\mu\nu\rho} \big(F^I_{\mu\nu}\partial_\rho\tilde{\zeta}_I - V_{\mu\nu}
+\partial_\rho \big(\tilde{\phi} - \frac{1}{2} \zeta^I\tilde{\zeta}_I \big)\big).
+\end{equation}
+Varying with respect to $F^I_{\mu \nu}$
+\begin{equation*}
+	\begin{aligned}
+		\La_3[\delta F^I_{\mu \nu}] + \La_{\text{Lm}}[\delta F^I_{\mu \nu}] = &+ \frac{1}{2} e^{\phi} \I_{IJ} \left(F^{J |\mu \nu} + \zeta^J V^{\mu \nu} \right) \delta F^I_{\mu \nu} \\
+		&- \half \epsilon \varepsilon^{\mu\nu\rho} \cR_{IJ} \partial_\rho \zeta^J \delta F^I_{\mu \nu} 
+		+ \half \epsilon \varepsilon^{\mu\nu\rho} \partial_\rho \tilde{\zeta}_I \delta F^I_{\mu \nu} = 0.
+	\end{aligned}
+\end{equation*}
+Rearranging this we obtain
+\begin{equation}
+\label{eq:fandv}
+\begin{aligned}
+		- e^{\phi} \I_{IJ} \left(F^{J |\mu \nu} + \zeta^J V^{\mu \nu}\right) = \epsilon \varepsilon^{\mu\nu\rho} \left( \partial_\rho \tilde{\zeta}_I - \cR_{IJ} \partial_\rho \zeta^J \right) \\
+			F^{I |\mu \nu} + \zeta^I V^{\mu \nu} = - e^{-\phi} \I^{IJ} \epsilon \varepsilon^{\mu\nu\rho} \left( \partial_\rho \tilde{\zeta}_J - \cR_{JK} \partial_\rho \zeta^K \right) .
+\end{aligned}
+\end{equation}
+Varying with respect to $V_{\mu \nu}$
+\begin{equation*}
+	\begin{aligned}
+		\La_3[\delta V_{\mu \nu}] + \La_{\text{Lm}}[\delta V_{\mu \nu}] &= \frac{1}{4} \epsilon e^{2\phi} V^{\mu \nu} \delta V_{\mu \nu} 
+		+ \frac{1}{2} e^{\phi} \I_{IJ} \zeta^I \left(F^{J |\mu \nu} + \zeta^J V^{\mu \nu} \right) \delta V_{\mu \nu} \\
+		&- \half \epsilon \cR_{IJ} \zeta^I \partial_\rho \zeta^J \varepsilon^{\mu\nu\rho} \delta V_{\mu \nu} \\
+		&- \half \epsilon \varepsilon^{\mu\nu\rho} \partial_\rho \left(\tilde{\phi} - \half \zeta^I \tilde{\zeta}_I \right) \delta V_{\mu \nu} = 0.
+	\end{aligned}
+\end{equation*}
+Rearranging this
+\begin{equation*}
+	\begin{aligned}
+		\half \epsilon e^{2 \phi} V^{\mu \nu} = - e^{\phi} \I_{IJ} \zeta^I \left(F^{J |\mu \nu} + \zeta^J V^{\mu \nu} \right) + \epsilon \cR_{IJ} \zeta^I \partial_\rho \zeta^J \varepsilon^{\mu\nu\rho} + \epsilon \varepsilon^{\mu\nu\rho} \partial_\rho \left(\tilde{\phi} - \half \zeta^I \tilde{\zeta}_I \right).
+	\end{aligned}
+\end{equation*}
+Inserting in \eq{fandv} we obtain
+\begin{equation*}
+	\begin{aligned}
+		\half \epsilon e^{2 \phi} V^{\mu \nu} &= \epsilon \varepsilon^{\mu\nu\rho} \zeta^I \left(\partial_\rho \tilde{\zeta}_I - \cR_{IJ} \partial_\rho \zeta^J \right) + \epsilon \varepsilon^{\mu\nu\rho} \cR_{IJ} \zeta^I \partial_\rho \zeta^J + \epsilon \varepsilon^{\mu\nu\rho} \partial_\rho \left(\tilde{\phi} - \half \zeta^I \tilde{\zeta}_I \right), \\
+		&= \varepsilon^{\mu\nu\rho} \epsilon \zeta^I \partial_\rho \tilde{\zeta}_I + \epsilon \varepsilon^{\mu\nu\rho} \partial_\rho \left(\tilde{\phi} - \half \zeta^I \tilde{\zeta}_I \right), \\
+		&= \epsilon \varepsilon^{\mu\nu\rho} \left[ \zeta^I \partial_\rho \tilde{\zeta}_I + \partial_\rho \tilde{\phi} - \half \left(\zeta^I \partial_\rho \tilde{\zeta}_I + \tilde{\zeta}_I \partial_\rho \zeta^I \right) \right], \\
+		&= \epsilon \varepsilon^{\mu\nu\rho} \left[ \partial_\rho \tilde{\phi} + \half \left(\zeta^I \partial_\rho \tilde{\zeta}_I - \tilde{\zeta}_I \partial_\rho \zeta^I \right) \right]. \\
+	\end{aligned}
+\end{equation*}
+Rearranging this, we obtain
+\begin{equation*}
+	V_{\mu \nu} = 2 e^{-2\phi} \varepsilon_{\mu \nu \rho} \left[ \partial^\rho \tilde{\phi} + \half \left(\zeta^I \partial^\rho \tilde{\zeta}_I - \tilde{\zeta}_I \partial^\rho \zeta^I \right) \right].
+\end{equation*}
+Going back to \eq{fandv}, we can rearrange this for $F_{\mu \nu}^I$
+\begin{equation*}
+	F^I_{\mu \nu} = - e^{-\phi} \I^{IJ} \epsilon \varepsilon_{\mu\nu\rho} \left[\partial^\rho \tilde{\zeta}_J - \cR_{JK} \partial^\rho \zeta^K \right] - \zeta^I V_{\mu \nu}.
+\end{equation*}
+Naming
+\begin{equation*}
+B^I_{\mu \nu} := F^{I}_{\mu \nu} + \zeta^I V_{\mu \nu} = - e^{-\phi} \I^{IJ} \epsilon \varepsilon_{\mu\nu\rho} \left( \partial^\rho \tilde{\zeta}_J - \cR_{JK} \partial^\rho \zeta^K \right).
+\end{equation*}
+We can write the Lagrangian
+\begin{equation*}
+\begin{aligned}
+ \La_3 &= -\half R_3 - \frac{1}{4}\partial_\mu \phi \partial^\mu \phi - g_{I\bar{J}} \partial_\mu X^I \partial^\mu \bar{X}^{\bar{J}} \\
+ &+ \frac{1}{8}\epsilon e^{2\phi}V_{\mu\nu} V^{\mu\nu} + \frac{1}{4}e^\phi \I_{IJ} B^I_{\mu \nu} B^{J |\mu \nu} \\
+ &- \frac{1}{2}\epsilon e^{-\phi} \I_{IJ} \partial_\mu\zeta^I \partial^\mu \zeta^J \\
+ &- \frac{1}{2} \epsilon \es^{\mu\nu\rho} \cR_{IJ} B^I_{\mu \nu}\partial_\rho\zeta^J,
+ \end{aligned}
+\end{equation*}
+and the Lagrange multiplier as
+\begin{equation*}
+\begin{aligned}
+	\mathbf{e}_3^{-1} \La_{\text{Lm}} &= \frac{1}{2} \epsilon \varepsilon^{\mu\nu\rho} \big(B^I_{\mu \nu} \partial_\rho\tilde{\zeta}_I - V_{\mu \nu} \zeta^I \partial_\rho\tilde{\zeta}_I - V_{\mu\nu} \partial_\rho \big(\tilde{\phi} - \frac{1}{2} \zeta^I\tilde{\zeta}_I \big)\big) ,\\
+	&= \frac{1}{2} \epsilon \varepsilon^{\mu\nu\rho} \left(B^I_{\mu \nu} \partial_\rho \tilde{\zeta}_I - V_{\mu \nu} \left[ \partial_\rho \tilde{\phi} + \frac{1}{2} \left( \zeta^I \partial_\rho \tilde{\zeta}_I - \tilde{\zeta}_I \partial_\rho \zeta^I \right)\right] \right) ,\\
+	&= \frac{1}{2} \epsilon \varepsilon^{\mu\nu\rho} B^I_{\mu \nu} \partial_\rho \tilde{\zeta}_I - \frac{1}{4} \epsilon e^{2\phi} V_{\mu \nu} V^{\mu \nu}.
+\end{aligned}
+\end{equation*}
+Combining these we obtain
+\begin{equation*}
+\begin{aligned}
+ \La_3 + \La_{\text{Lm}} &= -\half R_3 - \frac{1}{4}\partial_\mu \phi \partial^\mu \phi - g_{I\bar{J}} \partial_\mu X^I \partial^\mu \bar{X}^{\bar{J}} \\
+ &- \frac{1}{8}\epsilon e^{2\phi}V_{\mu\nu} V^{\mu\nu} + \frac{1}{4}e^\phi \I_{IJ} B^I_{\mu \nu} B^{J |\mu \nu} \\
+ &- \frac{1}{2}\epsilon e^{-\phi} \I_{IJ} \partial_\mu\zeta^I \partial^\mu \zeta^J \\
+ &+ \half \epsilon \varepsilon^{\mu\nu\rho} B^I_{\mu \nu} \left( \partial_\rho \tilde{\zeta}_I - \cR_{IJ} \partial_\rho \zeta^J \right).
+\end{aligned}
+\end{equation*}
+Rearranging the last term, we can simplify this
+\begin{equation*}
+\begin{aligned}
+ \La_3 + \La_{\text{Lm}} &= -\half R_3 - \frac{1}{4}\partial_\mu \phi \partial^\mu \phi - g_{I\bar{J}} \partial_\mu X^I \partial^\mu \bar{X}^{\bar{J}} \\
+ &- \frac{1}{8}\epsilon e^{2\phi}V_{\mu\nu} V^{\mu\nu} \\
+ &- \frac{1}{4}e^\phi \I_{IJ} B^I_{\mu \nu} B^{J |\mu \nu} \\
+ &- \frac{1}{2}\epsilon e^{-\phi} \I_{IJ} \partial_\mu\zeta^I \partial^\mu \zeta^J .\\
+\end{aligned}
+\end{equation*}
+Substituting in the values from the equations of motion we find that
+\begin{equation*}
+	\begin{aligned}
+			V^{\mu \nu} V_{\mu \nu} &= \epsilon 8 e^{-4 \phi} \left[ \partial^\rho \tilde{\phi} + \half \left(\zeta^I \partial^\rho \tilde{\zeta}_I - \tilde{\zeta}_I \partial^\rho \zeta^I \right) \right] \left[ \partial_\rho \tilde{\phi} + \half \left(\zeta^I \partial_\rho \tilde{\zeta}_I - \tilde{\zeta}_I \partial_\rho \zeta^I \right) \right],\\
+	\I_{I J} B_{\mu \nu}^I B^{J | \mu \nu} &= 2 \epsilon e^{-2 \phi} \I^{IJ} 
+	\left(\partial^\rho \tilde{\zeta}_I - \cR_{IM} \partial^\rho \zeta^M \right) 
+	\left( \partial_\rho \tilde{\zeta}_J - \cR_{JN} \partial_\rho \zeta^N \right),
+	\end{aligned}
+\end{equation*}
+where we have used that $\varepsilon_{\mu \nu \rho} \varepsilon^{\mu \nu \kappa} = \epsilon 2! \delta^\kappa_\rho$.
+\begin{equation*}
+\begin{aligned}
+ \La_3 + \La_{\text{Lm}} &= -\half R_3 - \frac{1}{4}\partial_\mu \phi \partial^\mu \phi - g_{I\bar{J}} \partial_\mu X^I \partial^\mu \bar{X}^{\bar{J}} \\
+ &- e^{-2\phi} \left[ \partial^\rho \tilde{\phi} + \half \left(\zeta^I \partial^\rho \tilde{\zeta}_I - \tilde{\zeta}_I \partial^\rho \zeta^I \right) \right] \left[ \partial_\rho \tilde{\phi} + \half \left(\zeta^I \partial_\rho \tilde{\zeta}_I - \tilde{\zeta}_I \partial_\rho \zeta^I \right) \right] \\
+ &- \frac{\epsilon}{2} e^{-\phi} \left[\I_{IJ} \partial_\mu\zeta^I \partial^\mu \zeta^J + \I^{IJ} 
+	\left(\partial^\rho \tilde{\zeta}_I - \cR_{IM} \partial^\rho \zeta^M \right) 
+	\left(\partial_\rho \tilde{\zeta}_J - \cR_{JN} \partial_\rho \zeta^N \right) \right].
+\end{aligned}
+\end{equation*}
+
+\chapter{STU Supergravity Couplings}
+\label{app:stucouplings}
+
+In Section \ref{sec:upliftstu}, we prepare our Lagrangian for dimensional uplift through writing it in a form such that we can easily compare our conventions to those used in \cite{Chow:2014cca}. To do this, we need the explicit form of the couplings which appear in our Lagrangian. As explained in Section \ref{sec:supergravitylag}, the $\N = 2$ supergravity theory is completely determined by the prepotential, which then naturally becomes our starting point. The couplings are also used in Section \ref{sec:thermostu} when we compute the on-shell Euclidean action of the planar solutions of the STU model.
+
+The STU prepotential \eq{stuprepotential}, repeated here, is of the form
+\begin{equation*}
+    F= \frac{X^1 X^2 X^3}{X^0}.
+\end{equation*}
+First we compute the derivatives of $F$ with respect to the complex scalars $X^I$. Taking the first derivative of $F(X)$ we obtain
+\begin{equation}
+    F_I = \left(-\frac{X^1 X^2 X^3}{(X^0)^2}, \frac{ X^2 X^3}{X^0} , \frac{X^1  X^3}{X^0} , \frac{X^1 X^2 }{X^0} \right),
+\end{equation}
+and taking one further derivative
+\begin{equation}
+    F_{IJ} =  \begin{pmatrix} \frac{2X^1 X^2 X^3}{(X^0)^3} & -\frac{X^2 X^3}{(X^0)^2} & -\frac{X^1 X^3}{(X^0)^2} & -\frac{X^1 X^2}{(X^0)^2} \\[6pt]
+    -\frac{X^2 X^3}{(X^0)^2} & 0 & \frac{X^3}{X^0} & \frac{X^2}{X^0} \\[6pt]
+    -\frac{X^1 X^3}{(X^0)^2} & \frac{X^3}{X^0} & 0 & \frac{X^1}{X^0} \\[6pt]
+    -\frac{X^1 X^2}{(X^0)^2} & \frac{X^2}{X^0} & \frac{X^1}{X^0} & 0
+    \end{pmatrix}.
+\end{equation}
+We work with the physical scalars $z^A$, and introduce the scalars $(s,t,u)$ to clean up our computations
+\begin{equation}
+  z^A = \frac{X^A}{X^0}, \qquad  \text{Im}(z^1) = -s, \quad \text{Im}(z^2) = -t,\quad  \text{Im}(z^3) = -u.
+\end{equation}
+To remove the spurious degrees of freedom we remember we must gauge fix our complex scalars, in our conventions we pick
+\begin{equation*}
+    \text{Im}X^0 = 0, \qquad \text{Re}X^A = 0,
+\end{equation*}
+and we can pick any of these to be the gauge fixing term. This allows us to relate the complex scalars $X^I$ to the scalars
+\begin{equation*}
+          X^0, \qquad X^1 = -isX^0,\qquad X^2 = -itX^0, \qquad X^3 = -iuX^0.    
+\end{equation*}
+From this, we can write down all the coupling matrices of the Lagrangian in terms of the real fields $\{s,t,u,X^0\}$. The prepotential is given by
+\begin{equation}
+  F(X^0,z^A) = istu (X^0)^2,
+\end{equation}
+and its derivatives by
+\begin{equation}
+F_I = \left(-istu X^0, tuX^0 , suX^0 , stX^0\right),
+\qquad 
+F_{IJ} =  \begin{pmatrix} 2istu & -tu & -su & -st  \\[4pt]
+    -tu & 0 &-iu & -it \\[4pt]
+   -su & -iu & 0 & -is \\[4pt]
+  -st & -it & -is & 0
+    \end{pmatrix}.
+\end{equation}
+The scalar metric \eq{scalarmetric}, and its inverse, can then be found from
+\begin{equation}
+        N_{IJ} = 2\text{Im}F_{IJ} =  \begin{pmatrix} 4stu & 0 & 0 & 0  \\[4pt]
+    0 & 0 &-2u & -2t \\[4pt]
+   0 & -2u & 0 & -2s \\[4pt]
+   0 & -2t & -2s & 0
+    \end{pmatrix}, 
+    \qquad 
+    N^{IJ} =    \left(
+\begin{array}{cccc}
+ \dfrac{1}{4 s t u} & 0 & 0 & 0 \\[9pt]
+ 0 & \dfrac{s}{4 t u} & -\dfrac{1}{4 u} & -\dfrac{1}{4 t} \\[9pt]
+ 0 & -\dfrac{1}{4 u} & \dfrac{t}{4 s u} & -\dfrac{1}{4 s} \\[9pt]
+ 0 & -\dfrac{1}{4 t} & -\dfrac{1}{4 s} & \dfrac{u}{4 s t} \\[9pt]
+\end{array}
+\right).
+\end{equation}
+We are interested in finding expressions for \eq{cN} and \eq{gij} which we can do by looking at the following intermediate quantities:
+\begin{equation*}
+\begin{aligned}
+    (NX)_I &= 4X^0 \left(  s t u ,- i t u ,- i s u,- i s t  \right), \\
+    (N\bar{X})_I &= 4X^0\left(  s t u , i t u , i s u , i s t  \right),\\
+    (XN\bar{X}) &= K = -8stu (X^0)^2,\\
+    (XNX) &= 16 s t u (X^0)^2 .  \\
+\end{aligned}
+\end{equation*}
+Taking the outer product we find
+\begin{equation*}
+    (N\bar{X})_I(NX)_J = 16stu (X^0)^2 \left(
+\begin{array}{cccc}
+ s t u & i t u & i s u & i s t \\[5pt]
+ -i t u & \dfrac{t u}{s} & u & t \\[5pt]
+ -i s u & u & \dfrac{s u}{t} & s \\[5pt]
+ -i s t & t & s & \dfrac{s t}{u} \\
+\end{array}
+\right),
+\end{equation*}
+and
+\begin{equation*}
+    (NX)_I(NX)_J = 16stu (X^0)^2
+\left(
+\begin{array}{cccc}
+ s t u & -i t u & -i s u & -i s t \\[5pt]
+ -i t u & -\dfrac{t u}{s} & -u & -t \\[5pt]
+ -i s u & -u & -\dfrac{s u}{t} & -s \\[5pt]
+ -i s t & -t & -s & -\dfrac{s t}{u} \\
+\end{array}
+\right).
+\end{equation*}
+
+We are now able to write down the coupling matrices using the above information. From \eq{cN}, we find the general gauge coupling to be
+\begin{equation}
+  \N_{IJ} = \bar{F}_{IJ} + i \frac{(XN)_I (XN)_J}{XNX} =  \left(
+\begin{array}{cccc}
+ -i s t u & 0 & 0 & 0 \\[5pt]
+ 0 & -\dfrac{i t u}{s} & 0 & 0 \\[5pt]
+ 0 & 0 & -\dfrac{i s u}{t} & 0 \\[5pt]
+ 0 & 0 & 0 & -\dfrac{i s t}{u} \\[5pt]
+\end{array}
+\right).
+\end{equation}
+As we have imposed the purely imaginary condition through our gauge fixing, we have $\cR_{IJ}$ = 0. The imaginary component, and its inverse is given by
+\begin{equation}
+\label{eq:iij}
+    \I_{IJ} = \left(
+\begin{array}{cccc}
+ - s t u & 0 & 0 & 0 \\[5pt]
+ 0 & -\dfrac{ t u}{s} & 0 & 0 \\[5pt]
+ 0 & 0 & -\dfrac{s u}{t} & 0 \\[5pt]
+ 0 & 0 & 0 & -\dfrac{ s t}{u} \\[5pt]
+\end{array}
+\right), \qquad    \I^{IJ} = \left(
+\begin{array}{cccc}
+ -\dfrac{1}{s t u} & 0 & 0 & 0 \\[5pt]
+ 0 & -\dfrac{s}{t u} & 0 & 0 \\[5pt]
+ 0 & 0 & -\dfrac{t}{s u} & 0 \\[5pt]
+ 0 & 0 & 0 & -\dfrac{u}{s t} \\[5pt]
+\end{array}
+\right).
+\end{equation}
+
+Similarly, from \eq{gij}, we find the form for the scalar field coupling
+\begin{equation}
+  g_{I\bar{J}} = - \frac{N_{IJ}}{XN\bar{X}} +  \frac{(N\bar{X})_I(XN)_J}{(XN\bar{X})^2}  = \frac{1}{(X^0)^2} \left(
+\begin{array}{cccc}
+ \dfrac{3}{4} & \dfrac{i}{4 s} & \dfrac{i}{4 t } & \dfrac{i}{4 u } \\[9pt]
+ -\dfrac{i}{4 s } & \dfrac{1}{4 s^2 } & 0 & 0 \\[9pt]
+ -\dfrac{i}{4 t } & 0 & \dfrac{1}{4 t^2 } & 0 \\[9pt]
+ -\dfrac{i}{4 u } & 0 & 0 & \dfrac{1}{4 u^2 } \\[9pt]
+\end{array}
+\right).
+\end{equation}
+This is the coupling for the scalar fields $X^I$, however, we only need the elements of the physical scalar coupling, which is given by \eq{scalargab}, repeated here
+\begin{equation*}
+ g_{A\bar{B}} = g_{I\bar{J}} \pardev{X^I}{z^A}\pardev{\bar{X}^{\bar{J}}}{\bar{z}^B},
+\end{equation*}
+which when computed is of the simple form
+\begin{equation}
+\label{eq:gab}
+  g_{A\bar{B}} = \left( \begin{array}{ccc}
+ \dfrac{1}{4s^2} & 0 & 0  \\[5pt]
+ 0 & \dfrac{1}{4t^2} & 0 \\[5pt]
+ 0 & 0 & \dfrac{1}{4u^2} \\[5pt] 
+\end{array} \right).
+\end{equation}
+
+We see that both \eq{iij} and \eq{gab} are diagonal, and so there will be no cross terms for our scalar or gauge field kinetic terms. We can begin to start expanding our $4D$ Lagrangian \eq{vecmullag} for the STU model of $\N=2$ supergravity
+\begin{equation*}
+  e_4^{-1} \La = -\frac{1}{2}R - g_{A\bar{B}} \partial_\mu z^A \partial^\mu \bar{z}^{\bar{B}} + \frac{1}{4} \I_{IJ} F^I_{\mu \nu} F^{J|\mu \nu}  + \frac{1}{4} \cR_{IJ} F^I_{\mu \nu} \tilde{F}^{J|\mu \nu} .
+\end{equation*}
+Substituting in \eq{iij} and \eq{gab} we can write down an action in the form
+\begin{equation*}
+\begin{aligned}
+    e_4^{-1} \La &= -\frac{1}{2}R - \frac{1}{4} \left( \frac{(\partial s)^2}{s^2} + \frac{(\partial t)^2}{t^2} + \frac{(\partial u)^2}{u^2} \right)  \\
+    &- \frac{1}{4} \left(  stu (F^0)^2 + \frac{tu}{s} (F^1)^2 + \frac{su}{t} (F^2)^2 + \frac{st}{u} (F^3)^2   \right).
+\end{aligned}
+\end{equation*}
+Making a redefintion of our scalars fields
+\begin{equation*}
+    s = e^{-\phi_1}, \qquad t = e^{-\phi_2}, \qquad u = e^{-\phi_3},
+\end{equation*}
+we obtain the Lagrangian
+\begin{equation*}
+   \begin{aligned}
+ e_4^{-1} \La = -\frac{1}{2}R - \frac{1}{4} \partial_\mu \phi_i \partial^\mu \phi_i
+ - \frac{1}{4} e^{-\phi_1 - \phi_2 - \phi_3} \left[ (F^0)^2 + e^{2 \phi_A } (F^A)^2 \right].
+   \end{aligned}
+\end{equation*}

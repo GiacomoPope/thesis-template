@@ -1,0 +1,407 @@
+\documentclass[11pt, a4paper, twoside]{book}
+
+%*******************************************************
+% Import packages
+%*******************************************************
+% Honestly I may not use all of these, I've lost track..
+%*******************************************************
+% Silly Latex doesn't know how to hyphenate Schwarzschild!
+\hyphenation{Schwarz-schild}
+
+\usepackage[english]{babel}
+\usepackage[toc,page]{appendix}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{tensor}
+\usepackage{fullpage}
+\usepackage{braket}
+\usepackage{framed}
+\usepackage{feynmf}
+\usepackage{cancel}
+\usepackage{empheq}
+\usepackage[affil-it]{authblk}
+\usepackage{dsfont}
+\usepackage{bbm}
+\usepackage{sectsty}
+\usepackage{hyperref}
+\usepackage{framed}
+\usepackage{mathrsfs}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{pgf}
+\usepackage{scrextend}
+\usepackage{epigraph}
+
+%*******************************************************
+% Define margins
+%*******************************************************
+\usepackage[left=1.25in,
+        right=1.25in,
+        top=0.8in,
+        bottom=1.3in,
+        headsep=0.4in,
+        footskip=0.6in,
+        ]{geometry}
+\usepackage[font=small, margin=2.5cm]{caption} %adds a margin to the figure captions.
+\usepackage{subcaption}
+
+
+%*******************************************************
+% Tikz stuff (Beware rabbit holes...)
+%*******************************************************
+\usepackage{tikz}
+\usetikzlibrary{cd}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathmorphing}
+\usepgfplotslibrary{patchplots}
+\usetikzlibrary{patterns, positioning, arrows, fadings}
+
+%*******************************************************
+% Format Titles
+%*******************************************************
+% These titles are inspired by classic-thesis
+%*******************************************************
+
+\usepackage{titlesec}
+              
+% Enumeration environment with small caps
+\newenvironment{aenumerate}
+    {\def\theenumi{\textsc{\alph{enumi}}}%
+     \enumerate}
+    {\endenumerate}
+
+% part formatting
+\titleformat{\part}[display]
+{\normalfont\centering\large}%
+{\thispagestyle{empty}\partname~\MakeTextUppercase{\thepart}}{1em}%
+{\color{Maroon}\spacedallcaps}[\bigskip\normalfont\normalsize\color{Black}]
+
+
+\titleformat{\chapter}[display]%             
+        {\relax}{\raggedleft{\color{Maroon}\fontsize{40}{52}\bfseries\thechapter}}{-0.5em}%
+        {\vspace*{\baselineskip}\raggedright\spacedallcaps}[\normalsize\vspace*{0.9\baselineskip}\titlerule\vspace*{-1.7\baselineskip}]%
+
+\titleformat{\section}
+        {\relax}{\textsc{\MakeTextLowercase{\thesection}}}{1em}{\spacedlowsmallcaps}
+\titleformat{\subsection}
+        {\relax}{\textsc{\MakeTextLowercase{\thesubsection}}}{1em}{\normalsize\itshape}
+\titleformat{\subsubsection}
+        {\relax}{\textsc{\MakeTextLowercase{\thesubsubsection}}}{1em}{\normalsize\itshape} 
+
+\titleformat{\paragraph}[runin]{\bfseries}{}{}{}
+
+
+%*******************************************************
+% TODO in margins if you want
+%*******************************************************
+\usepackage[textsize=footnotesize, color=blue!40]{todonotes}
+\setlength{\marginparwidth}{2.75cm}
+
+
+%*******************************************************
+% Custom Commands, Nothing very clever here
+%*******************************************************
+\newcommand{\ie}{{\textit{i.e. }}}
+\newcommand{\eg}{{\textit{e.g. }}}
+\newcommand{\et}{{\epsilon}}
+\newcommand{\es}{{\varepsilon}}
+\newcommand{\gijb}{{g_{i \bar{j}}}}
+\newcommand{\dm}{\partial_\mu}
+\newcommand{\dmu}{\partial^\mu}
+\newcommand{\La}{{\cal L}}
+\newcommand{\sch}{Schwarzschild }
+\newcommand{\rn}{Reissner–Nordstr\"om }
+\newcommand{\Ham}{{\cal H}}
+\newcommand{\cW}{{\cal W}}
+\newcommand{\Hilbert}{\mathcal{H}}
+\newcommand{\Op}{{\cal O}}
+\newcommand{\A}{{\cal A}}
+\newcommand{\Pc}{{\cal P}}
+\newcommand{\Uc}{{\cal U}}
+\newcommand{\N}{{\cal N}}
+\newcommand{\M}{{\cal M}}
+\newcommand{\E}{{\cal E}}
+\newcommand{\I}{{\cal I}}
+\newcommand{\F}{{\cal F}}
+\newcommand{\V}{{\cal V}}
+\newcommand{\scri}{{\cal J}}
+\newcommand{\bF}{\mathbb F}
+\newcommand{\bAt}{\tilde{\mathbb A}}
+\newcommand{\cR}{{\cal R}}
+\newcommand{\Q}{{\cal Q}}
+\newcommand{\K}{{\cal K}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\Mink}{{\eta_{\mu\nu}}}
+\newcommand{\gmn}{{g_{\mu\nu}}}
+\newcommand{\gmnu}{{g^{\mu\nu}}}
+\newcommand{\Indm}{{g_{\alpha \beta}}}
+\newcommand{\Intm}{{h_{\alpha \beta}}}
+\newcommand{\Sp}{{\mathbb{S}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\Real}{{\mathbb{R}}}
+\newcommand{\D}{{\cal D}}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\pmat}[4]{\begin{pmatrix} #1 & #2 \\ #3 & #4\end{pmatrix}}
+\newcommand{\pvec}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+\newcommand{\fourpvec}[4]{\begin{pmatrix} #1 \\ #2 \\ #3 \\ #4 \end{pmatrix}}
+\newcommand{\fourdiagmat}[4]{\begin{pmatrix} #1 & 0 & 0 & 0 \\ 0 & #2 & 0 & 0 \\ 0 & 0 & #3 & 0 \\ 0 & 0 & 0 & #4\end{pmatrix}}
+\newcommand{\pardev}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\dvar}[2]{\frac{\delta #1}{\delta #2}}
+\newcommand{\diff}[2]{\frac{d #1}{d #2}}
+\newcommand{\eq}[1]{(\ref{eq:#1})}
+
+%*******************************************************
+% Use Minion Pro. 
+%*******************************************************
+% If this is awful, maybe try palatino
+% Sometimes EBGaramond is easier to configure...
+% If you use MacOS, you can use the shell script minionpro.sh
+% to install Minion Pro.
+%*******************************************************
+\usepackage{fontspec}
+\setmainfont{Minion Pro}
+\usepackage[minionint, onlymath, mathlf]{MinionPro}
+\usepackage{amsthm}
+
+%*******************************************************
+% Theorems and Defintions
+%*******************************************************
+\numberwithin{equation}{section} %so the numbering of equations is per section, instead of hundreds through the whole document
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[chapter] % reset theorem numbering for each chapter
+
+\newtheorem*{lemma}{Lemma} % definition numbers are dependent on theorem numbers
+
+\newtheorem*{prop}{Proposition} % definition numbers are dependent on theorem numbers
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition} % definition numbers are dependent on theorem numbers
+\newtheorem{exmp}[thm]{Example} % same for example numbers
+
+
+%*******************************************************
+% Crazy Tikz Circles
+%*******************************************************
+% Used for one diagram, could be deleted for a general
+% Thesis
+%*******************************************************
+\tikzset{->-/.style={decoration={
+ markings,
+ mark=at position .5 with {\arrow{>}}},postaction={decorate}}}
+ 
+ \tikzset{-->-/.style={decoration={
+ markings,
+ mark=at position .75 with {\arrow{>}}},postaction={decorate}}}
+ 
+\newcommand\pgfmathsinandcos[3]{%
+  \pgfmathsetmacro#1{sin(#3)}%
+  \pgfmathsetmacro#2{cos(#3)}%
+}
+\newcommand\LongitudePlane[3][current plane]{%
+  \pgfmathsinandcos\sinEl\cosEl{#2} % elevation
+  \pgfmathsinandcos\sint\cost{#3} % azimuth
+  \tikzset{#1/.style={cm={\cost,\sint*\sinEl,0,\cosEl,(0,0)}}}
+}
+\newcommand\LatitudePlane[3][current plane]{%
+  \pgfmathsinandcos\sinEl\cosEl{#2} % elevation
+  \pgfmathsinandcos\sint\cost{#3} % latitude
+  \pgfmathsetmacro\yshift{\cosEl*\sint}
+  \tikzset{#1/.style={cm={\cost,0,0,\cost*\sinEl,(0,\yshift)}}} %
+}
+\newcommand\DrawLongitudeCircle[2][1]{
+  \LongitudePlane{\angEl}{#2}
+  \tikzset{current plane/.prefix style={scale=#1}}
+   % angle of "visibility"
+  \pgfmathsetmacro\angVis{atan(sin(#2)*cos(\angEl)/sin(\angEl))} %
+  \draw[current plane, opacity=0.6] (\angVis:1) arc (\angVis:\angVis+180:1);
+  \draw[current plane,dashed, opacity=0.4] (\angVis-180:1) arc (\angVis-180:\angVis:1);
+}
+\newcommand\DrawLatitudeCircle[2][1]{
+  \LatitudePlane{\angEl}{#2}
+  \tikzset{current plane/.prefix style={scale=#1}}
+  \pgfmathsetmacro\sinVis{sin(#2)/cos(#2)*sin(\angEl)/cos(\angEl)}
+  % angle of "visibility"
+  \pgfmathsetmacro\angVis{asin(min(1,max(\sinVis,-1)))}
+  \draw[current plane, opacity=0.6] (\angVis:1) arc (\angVis:-\angVis-180:1);
+  \draw[current plane,dashed, opacity=0.4] (180-\angVis:1) arc (180-\angVis:\angVis:1);
+}
+
+%*******************************************************
+% Custom Colours
+%*******************************************************
+\RequirePackage{xcolor}
+\definecolor{halfgray}{gray}{0.4} 
+\definecolor{webgreen}{rgb}{0,.5,0}
+\definecolor{webbrown}{rgb}{.6,0,0}
+\definecolor{Maroon}{cmyk}{0, 0.87, 0.68, 0.32}
+\definecolor{RoyalBlue}{cmyk}{1, 0.50, 0, 0}
+\definecolor{Black}{cmyk}{0, 0, 0, 0}
+\definecolor{shadecolor}{rgb}{0.95,0.98,1}
+
+\hypersetup{
+ colorlinks,
+ citecolor=webgreen,
+ filecolor=RoyalBlue,
+ linkcolor=RoyalBlue,
+ urlcolor=Maroon
+}
+
+%*******************************************************
+% Letter Spacing for titles and headers
+%*******************************************************
+\usepackage{microtype}
+\usepackage{textcase}
+
+\makeatletter
+\protected\def\spacedlowsmallcaps#1{%
+ {\addfontfeature{LetterSpace=7}\MakeTextLowercase{\spaceskip5.5pt \scshape{#1}}}%
+}
+\makeatother
+
+\RequirePackage{soul} % for letterspacing title
+\sodef\allcapsspacing{\upshape}{0.15em}{0.65em}{0.6em}%
+\DeclareRobustCommand{\spacedallcaps}[1]{\MakeTextUppercase{\allcapsspacing{#1}}}%   
+
+
+%*******************************************************
+% Headers and Footers
+%*******************************************************
+
+% If you want maths in the header you need to do some nonsense to make it play
+% nice with the small caps and with the pdf bookmarks.
+\newcommand{\titleN}{\texorpdfstring{\MakeUppercase{$\mathcal{N}$}}{N}}
+\newcommand{\titleD}{\texorpdfstring{\MakeUppercase{$D$}}{D}}
+
+% Header style based on Class-Thesis
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[LE,RO]{\textit \thepage}
+\fancyhead[RE]{\rightmark}
+\fancyhead[LO]{\leftmark}
+\fancyfoot[CE,CO]{}
+\fancyfoot[LE,RO]{}
+
+% use spaced small caps in the header of each page
+\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+\renewcommand{\sectionmark}[1]{\markright{\spacedlowsmallcaps{#1}}} 
+
+% make the page number italic on first page of chapters
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[C]{\textit{\thepage}} % except the centre
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+
+
+%*******************************************************
+% Start of document
+%*******************************************************
+\begin{document}
+\frenchspacing
+\raggedbottom
+\newcounter{savepage}
+\pagenumbering{roman}
+
+% This sets the line height, if you need double spacing, increase this.
+\baselineskip=17pt
+
+%*******************************************************
+% Frontmatter
+%*******************************************************
+\include{frontback/Titlepage}
+\cleardoublepage\include{frontback/Abstract}
+\cleardoublepage\include{frontback/Declaration}
+\cleardoublepage\include{frontback/Dedication}
+\cleardoublepage\include{frontback/Acknowledgments}
+\cleardoublepage\include{frontback/Publications}
+
+% Modify the header for contents as this isn't automatic...
+\fancyhead[RE]{\spacedlowsmallcaps{Contents}}
+\fancyhead[LO]{\spacedlowsmallcaps{Contents}}
+\cleardoublepage\include{frontback/Contents}
+
+% Modify the header for Figure and Tables as this isn't automatic...
+\fancyhead[RE]{\spacedlowsmallcaps{Figures and Tables}}
+\fancyhead[LO]{\spacedlowsmallcaps{Figures and Tables}}
+\cleardoublepage\include{frontback/ListOfFiguresTablesListings}
+
+% OK back to normal headers
+\fancyhead[RE]{\rightmark}
+\fancyhead[LO]{\leftmark}
+
+%*******************************************************
+% Mainmatter
+%*******************************************************
+\cleardoublepage
+\setcounter{savepage}{\arabic{page}}
+\pagenumbering{arabic}
+\cleardoublepage
+
+\include{chapters/introduction}
+\cleardoublepage
+
+\part{Background Material}
+\label{part:background}
+
+\include{chapters/diff}
+\cleardoublepage
+
+\include{chapters/blackholes}
+\cleardoublepage
+
+\include{chapters/supergravity}
+\cleardoublepage
+
+
+\part{Cosmological Killing Horizons and their Thermodynamics}
+\label{part:main}
+
+\include{chapters/einsteinmaxwell}
+\cleardoublepage
+
+\include{chapters/stumodel}
+\cleardoublepage
+
+\include{chapters/brane}
+\cleardoublepage
+
+\include{chapters/thermo}
+\cleardoublepage
+
+\include{chapters/conclusion}
+\cleardoublepage
+
+%*******************************************************
+% Backmatter
+%*******************************************************
+\part{Appendices}
+\label{part:appendicies}
+\appendix
+\cleardoublepage
+
+\include{chapters/conventions}
+\cleardoublepage
+
+\include{chapters/appendix}
+\cleardoublepage
+
+%*******************************************************
+% Bibliography
+%*******************************************************
+\addcontentsline{toc}{chapter}{Bibliography}
+
+\fancyhead[RE]{\spacedlowsmallcaps{Bibliography}}
+\fancyhead[LO]{\spacedlowsmallcaps{Bibliography}}
+
+\bibliography{planar} 
+\bibliographystyle{jhep}
+\end{document}
+
