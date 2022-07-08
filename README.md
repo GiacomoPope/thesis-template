@@ -26,3 +26,12 @@ The `thesis.tex` has some comments. I also use the `jhep` style bibliography bec
 ## Collaboration
 
 If you would like to help generalise my work into a proper template, then please make a pull request. Small changes can be made as issues.
+
+## Screenshots
+
+![Title page](screenshots/1.png)
+![Chapter Title](screenshots/2.png)
+![Maths and Footnote](screenshots/3.png)
+![Figures and Subsections](screenshots/4.png)
+![More maths and figures](screenshots/5.png)
+![More Maths and Sections](screenshots/6.png)
